@@ -8,4 +8,10 @@ def multiply(a, b):
         return 0
     return a * b
 
+
+def multiplyTEST(a, b):
+    """Простая функция умножения"""
+    if a == 0 or b == 0:
+        return 0
+    return a * b
 """Тестовый комментарий"""
