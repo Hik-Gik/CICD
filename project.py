@@ -8,3 +8,4 @@ def multiply(a, b):
         return 0
     return a * b
 
+"""Тестовый комментарий"""
