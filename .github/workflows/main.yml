@@ -47,12 +47,17 @@ jobs:
         python generate_docs.py  # Запуск скрипта генерации документации
 
     # Шаг 7: Автокоммит и пуш изменений с документацией
-    - name: Commit and push generated documentation
-      run: |
-        git config --global user.email "you@example.com"  # Укажите вашу почту
-        git config --global user.name "GitHub Action Bot"
-        git add docs/API.md  # Добавляем сгенерированную документацию
-        git commit -m "Автоматическая генерация документации [skip ci]" || echo "No changes to commit"
-        git push origin ${{ github.ref }}  # Пушим изменения в текущую ветку
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Используем токен для аутентификации
+        - name: Commit and push generated documentation
+  run: |
+    git config --global user.email "you@example.com"  # Укажите вашу почту
+    git config --global user.name "GitHub Action Bot"
+    git add docs/API.md  # Добавляем сгенерированную документацию
+    git commit -m "Автоматическая генерация документации [skip ci]" || echo "No changes to commit"
+    
+    # Обновляем локальную ветку перед пушем
+    git pull origin ${{ github.ref }} --rebase  # Используем rebase для интеграции изменений
+    
+    git push origin ${{ github.ref }}  # Пушим изменения в текущую ветку
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Используем ваш Personal Access Token
+
