@@ -3,9 +3,9 @@ name: CI
 on:
   # Триггер при каждом коммите и pull request для ветки main
   push:
-    branches: [ "main" ]
+    branches: [ "main", "development" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "development" ]
   # Возможность запуска вручную
   workflow_dispatch:
 
